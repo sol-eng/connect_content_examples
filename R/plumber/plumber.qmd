@@ -1,7 +1,104 @@
 # Plumber {.unnumbered}
 
-The RStudio Docs have an excellent example [here](https://docs.rstudio.com/how-to-guides/rsc/publish-plumberapi/) of how to create a Plumber API and publish it to Connect.
+The RStudio Docs have an excellent example [here](https://docs.rstudio.com/how-to-guides/rsc/publish-plumberapi/) of how to create a Plumber API and publish it to Connect.  However, a Plumber API can also be published using the `rsconnect` R package.
 
-_[Question] - Should we try to merge this work into that?_
+## Prerequisites
 
-![](images/1_.png){fig-align="left" width=100%}
+-   `rsconnect` R package installed
+
+## Create Content {.numbered}
+
+### 1. Create  `plumber.R` file in empty directory
+
+```markdown
+# plumber.R
+
+library(plumber)
+library(dplyr)
+
+# Basic car data
+df <- mtcars %>% select(cyl, mpg)
+df$model <- row.names(df)
+row.names(df) <- NULL
+
+#* Return cars
+#* @param cyl
+#* @serializer json list(na="string")
+#* @get /cars
+function(cyl="all") {
+  if (cyl == "all") {
+    return(df)
+  } else {
+    return(df[df$cyl == as.integer(cyl),])
+  }
+}
+```
+
+### 2. Create `manifest.json` file
+
+In R console, execute the following:
+
+```markdown
+> rsconnect::writeManifest()
+```
+
+This should generate a new file named `manifest.json` in your directory.
+
+### 3. Verify content runs locally
+
+If using RStudio IDE, click on __Run API__
+
+![](images/1_run_api_locally.png){fig-align="left" width=80%}
+
+You should see the Swagger interface for the API in the Viewer pane.
+
+![](images/2_run_local_swagger.png){fig-align="left" width=100%}
+
+## Register Connect Server {.numbered}
+
+### 1. Get API key from Connect server
+![](../../python/streamlit/images/1_streamlit_connect_api_key.png){fig-align="left" width=100%}
+
+### 2. Register the API key, account and server.
+
+In R console:
+
+```markdown
+rsconnect::connectApiUser(account = "<ACCOUNT>", 
+                          server = "<CONNECT_SERVER_IP>", 
+                          apiKey = "<API_KEY>")
+```
+
+Should return:
+
+```markdown
+The account '<ACCOUNT>' is already registered; attempting to reconnect it.
+
+Account registered successfully: <ACCOUNT>
+```
+
+## Publish Content {.numbered}
+
+### 1. Deploy content to Connect server
+
+```markdown
+rsconnect::deployAPI(api = ".", 
+                     account = "<ACCOUNT>", 
+                     server = "<CONNECT_SERVER_IP>")
+```
+
+You should see the following after a successful deployment.
+
+```markdown
+[Connect] Launching Plumber API...
+Api successfully deployed to http://3.16.161.212:3939/content/265f0df8-7e41-48c6-a1b1-2d5b599ff8ad/
+```
+
+### 2. Verify that API is accessible on Connect
+
+Follow the link posted in the deployment pane. You should see the following.
+
+![](images/3_connect_plumber_api.png){fig-align="left" width=100%}
+
+
+
