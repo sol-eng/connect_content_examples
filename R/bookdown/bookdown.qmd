@@ -1,0 +1,80 @@
+# Bookdown {.unnumbered}
+
+The easiest way to publish a Bookdown site is via the Rstudio IDE, either using the desktop version or one of the server based products like Workbench or RStudio Server.  A built-in example of a simple Bookdown site can be created and then be published using the IDE's built-in "Publish" button. 
+
+## Prerequisites
+
+* `rmarkdown` R package installed
+
+## Create Content {.numbered}
+
+### 1. Create a new Project
+
+Choose "File" --> "New Project" --> "New Directory" --> "Book project using bookdown"
+
+![](images/1_bookdown_proj.png){fig-align="left" width=100%}
+
+We named ours, "Bookdown_Example"
+
+![](images/2_bookdown_example.png){fig-align="left" width=50%}
+
+This will create a new Project in a new directory named "Bookdown_Example" that contains all of the files needed to publish a minimal Bookdown site. In addition, 4 files will automatically be opened in the editor pane of the IDE: 
+
+- `README.md`
+- `index.Rmd`
+- `_bookdown.yml`
+- `_output.yml`
+
+### 2. Configure "Preview" location
+
+Select the `index.Rmd` file and click on the dropdown next to the "Knit" button.  Verify that "Preview in Viewer Pane" is selected.
+
+![](images/4_bookdown_preview_select.png){fig-align="left" width=80%}
+
+### 3. Preview the site locally
+
+Press the "Knit" button and you should see "A Minimal Book Example" displayed in the Viewer Pane on the lower right.
+
+![](images/3_bookdown_index_knit.png){fig-align="left" width=100%}
+
+## Publish Content {.numbered}
+
+### 1. Verify Connect server is registered
+
+Select the dropdown next to the __Publish Application__ button and choose __Manage Accounts__.  
+
+![](../shiny/images/5_register_connect_server.png){fig-align="left" width=100%}
+
+This will bring up a window that shows what Connect servers you are registered to publish to.
+
+![](../shiny/images/6_connect_server_ip.png){fig-align="left" width=50%}
+
+If the __Publishing Accounts__ area is blank, follow the instructions in [Connecting Your Account](https://docs.rstudio.com/connect/user/connecting/) to register your Connect server to your IDE.
+
+### 2. Publish
+
+Once you have verified that you have a Connect server available to publish to, press the blue "Publish" icon in the IDE and then __Publish website with source code__ button to publish to the selected server.
+
+![](images/6_bookdown_publish_with_source.png){fig-align="left" width=100%}
+
+Select all of the files and the server that you want to to publish to and then press __Publish__.
+
+![](images/7_bookdown_publish_files_server.png){fig-align="left" width=50%}
+
+### 3. Verify content deployment
+
+Look in the "Deploy" pane of the IDE.  You should see "Site successfully deployed to <connect_server_address>" at the bottom, like this.
+
+```markdown
+[Connect] Completed deployed execution
+Site successfully deployed to http://colorado.rstudio.com/content/6ed04778-cdb0-4a67-aaf1-2ed8ed814617/
+Deployment completed: http://colorado.rstudio.com/connect/#/apps/6ed04778-cdb0-4a67-aaf1-2ed8ed814617
+```
+
+_NOTE: Successful deployment is not a guarantee that the the app can run.  Always verify that the content is running properly on the Connect server._
+
+### 4. Verify that content runs
+
+A browser window should open automatically to the address listed in the deployment message when you publish, or you can copy and paste the URL into a browser to check whether the content is successfully running in Connect.
+
+![](images/8_bookdown_verify_on_connect.png){fig-align="left" width=100%}

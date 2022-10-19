@@ -1,0 +1,81 @@
+# Quarto {.unnumbered}
+
+Quarto.org has an excellent example [here](https://quarto.org/docs/publishing/rstudio-connect.html) of how to publish a Quarto doc and publish it to Connect.
+
+Quarto documents can also be created in a text editor and published directly from the RStudio IDE.
+
+## Prerequisites
+
+* `quarto` R package installed
+* Empty working directory
+
+## Create Content {.numbered}
+
+### 1. Create `quarto_R.qmd` file
+
+````markdown
+---
+title: "Quarto Document"
+author: "Roger Andre"
+toc: false
+format:
+  html:
+    code-fold: true
+---
+### This is some markdown:
+
+* "Hello, world!"
+
+#### This is some R code
+`r ''````{r echo=FALSE}
+summary(pressure)
+```
+
+`r ''````{r echo=FALSE}
+plot(pressure)
+title("Pressure Plot")
+```
+
+````
+
+### 2. Verify the file renders locally
+
+Open the file in RStudio and select the __Render__ option.
+
+![](images/1_.png){fig-align="left" width="100%"}
+ 
+## Publish Content {.numbered}
+
+### 1. Verify Connect server is registered
+
+Press on the dropdown next to the "Publish" button and choose "Manage Accounts".  
+
+![](../shiny/images/5_register_connect_server.png){fig-align="left" width=100%}
+
+This will bring up a window that shows what Connect servers you are registered to publishing to.
+
+![](../shiny/images/6_connect_server_ip.png){fig-align="left" width=50%}
+
+If the "Publishing Accounts" area is blank, follow the instructions in [Connecting Your Account](https://docs.rstudio.com/connect/user/connecting/) to register your Connect server to your IDE.
+
+### 2. Publish
+
+Once you have verified that you have a Connect server available to publish to, press the blue "Publish" icon in the IDE and then the "Publish"  button to publish to the selected server.
+
+![](images/2_publish_to_connect.png){fig-align="left" width=50%}
+
+### 3. Verify content deployment
+
+Look in the "Deploy" pane of the IDE.  You should see "Completed deployed execution" at the bottom.
+
+````markdown
+[Connect] Completed deployed execution
+Document successfully deployed to https://colorado.rstudio.com/rsc/content/ac07b562-6ef5-486d-98f9-adbd5551c215/
+Deployment completed: https://colorado.rstudio.com/rsc/connect/#/apps/ac07b562-6ef5-486d-98f9-adbd5551c215
+````
+
+### 4. Verify that content runs on Connect
+
+The __Deployment completed__ link should look like this.
+
+![](images/3_deployed_content_connect.png){fig-align="left" width=100%}

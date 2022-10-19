@@ -1,0 +1,87 @@
+# Streamlit {.unnumbered}
+
+## Prerequisites
+
+* `streamlit` Python package installed
+* `numpy` Python package installed
+* `rsconnect-python` Python package installed
+* Empty working directory
+
+## Create Content {.numbered}
+
+### 1. Create `app.py` file
+
+````markdown
+import streamlit as st
+import numpy as np
+import time
+
+progress_bar = st.sidebar.progress(0)
+status_text = st.sidebar.empty()
+last_rows = np.random.randn(1, 1)
+chart = st.line_chart(last_rows)
+
+for i in range(1, 101):
+  new_rows = last_rows[-1, :] + np.random.randn(5, 1).cumsum(axis=0)
+  status_text.text("%i%% Complete" % i)
+  chart.add_rows(new_rows)
+  progress_bar.progress(i)
+  last_rows = new_rows
+  time.sleep(0.05)
+
+progress_bar.empty()
+
+st.button("Re-run")
+````
+
+### 2. Create `requirements.txt` file
+
+```markdown
+streamlit
+numpy
+
+```
+
+### 3. Verify that content runs locally
+
+```markdown
+streamlit run app.py
+```
+
+## Register Connect Server {.numbered}
+
+### 1. Get API key from Connect server
+![](images/1_streamlit_connect_api_key.png){fig-align="left" width=100%}
+
+
+### 2. Register API key and server with `rsconnect-python`
+
+```markdown
+rsconnect add --api-key <API_KEY> \
+--server <CONNECT_SERVER_URL> \
+--name <ALIAS>
+```
+
+## Publish Content {.numbered}
+
+### 1. Deploy content to Connect server
+
+```markdown
+rsconnect deploy streamlit . \
+--title "Streamlit Example" -n <ALIAS>
+```
+
+You should see the following after a successful deployment.
+
+```markdown
+
+Deployment completed successfully.
+Dashboard content URL: https://colorado.rstudio.com/rsc/connect/#/apps/dd3114d2-c845-475a-971a-738d4f3ea5e7
+Direct content URL: https://colorado.rstudio.com/rsc/content/dd3114d2-c845-475a-971a-738d4f3ea5e7/
+  ```
+
+### 2. Verify that API is accessible on Connect
+
+Go to _Direct content URL_ listed in Deployment pane.  You should see the following.
+
+![](images/2_streamlit_connect_verify.png){fig-align="left" width=100%}

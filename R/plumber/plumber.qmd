@@ -1,0 +1,7 @@
+# Plumber {.unnumbered}
+
+The RStudio Docs have an excellent example [here](https://docs.rstudio.com/how-to-guides/rsc/publish-plumberapi/) of how to create a Plumber API and publish it to Connect.
+
+_[Question] - Should we try to merge this work into that?_
+
+![](images/1_.png){fig-align="left" width=100%}

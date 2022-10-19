@@ -1,0 +1,71 @@
+# Jupyter Notebook {.unnumbered}
+
+## Prerequisites
+
+* `jupyter` Python package installed
+* `rsconnect-python` Python package installed
+* Empty working directory
+
+## Create Content {.numbered}
+
+### 1. Create `Hello_World.ipynb` file in text editor.
+
+````markdown
+{
+ "cells": [{
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": ["# Hello World!\n"]
+  }],
+ "metadata": {},
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
+
+````
+
+### 2. Create `requirements.txt` file
+
+(Only contains `jupyter` package.)
+
+```markdown
+jupyter
+
+```
+
+## Register Connect Server {.numbered}
+
+### 1. Get API key from Connect server
+![](../streamlit/images/1_streamlit_connect_api_key.png){fig-align="left" width=100%}
+
+### 2. Register API key and server with `rsconnect-python`
+
+```markdown
+rsconnect add --api-key <API_KEY> \
+--server <CONNECT_SERVER_URL> \
+--name <ALIAS>
+```
+
+## Publish Content {.numbered}
+
+### 1. Deploy content to Connect server
+
+```markdown
+rsconnect deploy notebook Hello_World.ipynb \
+--title "Jupyter Example" -n <ALIAS>
+```
+You should see the following after a successful deployment.
+
+```markdown
+Completed deployed execution
+Deployment completed successfully.
+	 Dashboard content URL: http://colorado.rstudio.com/connect/#/apps/4185cfa8-5a5a-4690-8b67-ca4ee9bf72e6
+	 Direct content URL: http://colorado.rstudio.com/content/4185cfa8-5a5a-4690-8b67-ca4ee9bf72e6/
+
+  ```
+
+### 2. Verify that API is accessible on Connect
+
+Go to _Dashboard content URL_ listed in Deployment pane.  You should see the following.
+
+![](images/1_jupyter_ipynb.png){fig-align="left" width=100%}

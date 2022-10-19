@@ -1,0 +1,100 @@
+# Flask API {.unnumbered}
+
+## Prerequisites
+
+* `flask` Python package installed
+* `rsconnect-python` Python package installed
+* Empty working directory
+
+## Create Content {.numbered}
+
+### 1. Create `app.py` file
+
+````markdown
+from flask import Flask
+from flask import jsonify
+ 
+app = Flask(__name__)
+ 
+@app.route('/', methods=['GET'])
+def hello_world():
+  return jsonify({'greeting':'Hello, World!'})
+ 
+# main driver function
+if __name__ == '__main__':
+ 
+  app.run()
+
+````
+
+### 2. Create `requirements.txt` file
+
+(Only contains `flask` package name)
+
+```markdown
+flask
+
+```
+
+### 3. Verify content runs locally
+
+```markdown
+python3 app.py
+```
+
+You should see:
+
+```markdown
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. 
+Do not use it in a production deployment. 
+Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5000
+```
+ And when you go to the URL, you will see the following JSON in the browser:
+ 
+ ```markdown
+ {"greeting":"Hello, World!"}
+ ```
+ 
+## Register Connect Server {.numbered}
+
+### 1. Get API key from Connect server
+![](../streamlit/images/1_streamlit_connect_api_key.png){fig-align="left" width=100%}
+
+### 2. Register API key and server with `rsconnect-python`
+
+```markdown
+rsconnect add --api-key <API_KEY> \
+--server <CONNECT_SERVER_URL> \
+--name <ALIAS>
+```
+
+## Publish Content {.numbered}
+
+### 1. Deploy content to Connect server
+
+```markdown
+rsconnect deploy api . \
+--title "Flask Example" -n <ALIAS>
+```
+
+You should see the following after a successful deployment.
+
+```markdown
+Launching Python API...
+Deployment completed successfully.
+Dashboard content URL: https://colorado.rstudio.com/rsc/connect/#/apps/dd3114d2-c845-475a-971a-738d4f3ea5e7
+Direct content URL: https://colorado.rstudio.com/rsc/content/dd3114d2-c845-475a-971a-738d4f3ea5e7/
+```
+
+### 2. Verify that API is accessible on Connect
+
+In python console:
+
+```markdown
+>>> import requests
+>>> requests.get("https://colorado.rstudio.com/rsc/content/dd3114d2-c845-475a-971a-738d4f3ea5e7").json()
+{'greeting': 'Hello, World!'}
+```

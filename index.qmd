@@ -1,0 +1,3 @@
+# Preface {.unnumbered}
+
+This document contains information about how to publish various types of supported content in RStudio Connect. 

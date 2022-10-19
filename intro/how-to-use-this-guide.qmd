@@ -1,0 +1,11 @@
+# Who should read this guide? {.unnumbered}
+
+This guide is intended for System Administrators and IT professionals who are responsible for installing and configuring Connect at their organizations.  It is not intended as a Data Science primer, or as a reference for R and Python programming.  Knowledgeable users of those languages will not find idiomatic code constructs or new tricks for parallelizing workflows herein.  However, anyone who wants to better understand how to publish a specific type of content to a Connect server, and to then verify that the content functions, will likely benefit from reading this guide.
+
+# How to use this guide? {.unnumbered}
+
+This guide is organized by language into separate chapters for R and Python.  Each language chapter is broken up into subsections for specific content types.  Some content types, like Pins and Quarto are repeated in both languages since they can be created and published from both.
+
+Each section on specific content contains what we feel is the "minimum viable" example needed to create a small exemplar of that content type and push it to a Connect server.  In most cases, this involves copying and pasting a small amount of code into an IDE and then either using the built-in Connect publishing extension in that IDE, OR executing some code in a terminal to publish.  This will vary depending on the nature of the format.
+
+In addition to walking through the content creation and publishing process, each section contains instructions for how to verify the "Expected Outcome" on the Connect server.  This could be a simple as following a URL and verifying that a Web page looks as expected, or in some cases, running a short command in a terminal and verifying that the output matches the example given.

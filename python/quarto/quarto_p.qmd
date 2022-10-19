@@ -1,0 +1,96 @@
+# Quarto (Python) {.unnumbered}
+
+Quarto documents can be created in a text editor and published with the `rsconnect` python package.  If you would like to preview them, follow the instructions in [quarto docs](https://quarto.org/docs/get-started/) to install them locally.
+
+## Prerequisites
+
+* `rsconnect` Python package installed
+* Empty working directory
+
+## Create Content {.numbered}
+
+### 1. Create `qmd_sample.qmd` file
+
+````markdown
+---
+title: "Quarto Document"
+author: "Roger Andre"
+toc: false
+format:
+  html:
+    code-fold: true
+---
+### This is some markdown:
+
+* "Hello, world!"
+
+### Below is some in-line Python code:
+
+`r ''````{python}
+#| label: fig-polar
+#| fig-cap: "A line plot on a polar axis"
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = 2 * np.pi * r
+fig, ax = plt.subplots(
+  subplot_kw = {'projection': 'polar'} 
+)
+ax.plot(theta, r)
+ax.set_rticks([0.5, 1, 1.5, 2])
+ax.grid(True)
+plt.show()
+```
+````
+
+### 2. Create `requirements.txt` file
+
+```markdown
+numpy
+matplotlib
+
+```
+ 
+## Register Connect Server {.numbered}
+
+### 1. Get API key from Connect server
+![](../streamlit/images/1_streamlit_connect_api_key.png){fig-align="left" width=100%}
+
+### 2. Register API key and server with `rsconnect-python`
+
+In terminal:
+
+```markdown
+$ rsconnect add --api-key <API_KEY> \
+--server <CONNECT_SERVER_URL> \
+--name <ALIAS>
+```
+
+## Publish Content {.numbered}
+
+### 1. Deploy content to Connect server
+
+In terminal:
+
+```markdown
+$ rsconnect deploy quarto quarto_sample.qmd \
+--title "Quarto Python Example" -n <ALIAS>
+```
+
+You should see the following after a successful deployment.
+
+```markdown
+Completed deployed execution
+Deployment completed successfully.
+         Dashboard content URL: http://colorado.rstudio.com/connect/#/apps/f591f348-4f23-4405-94da-da34e86551cd
+         Direct content URL: http://colorado.rstudio.com/content/f591f348-4f23-4405-94da-da34e86551cd/
+```
+
+### 2. Verify that API is accessible on Connect
+
+The __Dashboard content__ link should look like this.
+
+![](images/1_quarto_connect_content.png){fig-align="left" width=100%}
+

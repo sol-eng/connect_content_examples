@@ -1,0 +1,55 @@
+# Pins (Python) {.unnumbered}
+
+## Prerequisites
+
+* `pins` Python package installed
+* `rsconnect-python` Python package installed
+* Empty working directory
+
+## Get API key from Connect server
+
+![](../streamlit/images/1_streamlit_connect_api_key.png){fig-align="left" width=100%}
+
+## Create Content {.unnumbered}
+
+### Create `mtcars_pin.py` file in text editor.
+
+````markdown
+import os
+import pins
+from pins import board_rsconnect
+from pins.data import mtcars
+
+# Instantiate Pin board on server
+board = board_rsconnect(server_url = "<CONNECT_SERVER_URL>", 
+  api_key = "<API_KEY>")
+
+# "Pin" data to board
+board.pin_write(mtcars, 
+  name="randre/python_mtcars_data", 
+  title="Python Pin Example", 
+  type="csv")
+
+````
+
+## Publish Content {.unnumbered}
+
+Execute `mtcars_pin.py` python script.
+
+```markdown
+$ python3 mtcars_pin.py 
+Writing pin:
+Name: 'randre/python_mtcars_data'
+Version: 20221017T213729Z-3b134
+```
+
+## Verify that content is accessible {.unnumbered}
+
+Go to Connect server Content listing.  You should see a piece of content with the title "Python Pin Example".
+
+![](images/1_connect_python_pins_content_listing.png){fig-align="left" width=100%}
+
+Click on that content.  You should see the following.
+![](images/2_connect_python_pin_data.png){fig-align="left" width=100%}
+
+

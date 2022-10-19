@@ -1,0 +1,68 @@
+# Pins {.unnumbered}
+
+The easiest way to publish a Pins board is to use the RStudio IDE to create an R file that contains the information needed to transmit data and "pin" it to the Connect server.
+
+**Note:** The information below is taken from [here](https://docs.rstudio.com/how-to-guides/users/pro-tips/pins/) and adapted for the purpose of this guide.
+
+## Prerequisites
+
+-   `pins` R package installed
+
+## Verify Connect server is registered
+
+Select the dropdown next to the **Publish Application** button and choose **Manage Accounts**.
+
+![](../shiny/images/5_register_connect_server.png){fig-align="left" width="100%"}
+
+This will bring up a window that shows what Connect servers you are registered to publish to.
+
+![](../shiny/images/6_connect_server_ip.png){fig-align="left" width="50%"}
+
+If the **Publishing Accounts** area is blank, follow the instructions in [Connecting Your Account](https://docs.rstudio.com/connect/user/connecting/) to register your Connect server to your IDE.
+
+## Create Content {.numbered}
+
+### 1. Create a new R script named `faithful_pin.R`
+
+![](images/1_pins_new_rscript.png){fig-align="left" width="80%"}
+
+### 2. Drop the following code into the file
+
+```markdown
+# Establish connection to Connect server
+board <- pins::board_rsconnect()
+
+# Create small data set
+my_data <- faithful #for example
+
+# Write data to server
+pins::pin_write(board,
+                my_data,
+                name = "faithful_data")
+```
+
+## Publish Content {.numbered}
+
+### 1. Run the script
+
+Click on __Source__ in the IDE
+
+![](images/2_pins_source_file.png){fig-align="left" width="100%"}
+
+__Source__ will execute the contents of the current file and you should see the following in the Console window"
+
+```markdown
+Connecting to RSC 2022.09.0 at <https://colorado.rstudio.com/rsc>
+Guessing `type = 'rds'`
+Writing to pin 'roger.andre/faithful_data'
+```
+
+### 2. Verify content on Connect server
+
+You should see the newly published pin set in your Content listing.
+
+![](images/3_pins_content_connect.png){fig-align="left" width="100%"}
+
+Click on the content and you should see information about the data listed.
+
+![](images/4_pins_connect_data.png){fig-align="left" width="100%"}

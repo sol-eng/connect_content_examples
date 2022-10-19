@@ -1,0 +1,80 @@
+# Rmarkdown {.unnumbered}
+
+The RStudio Docs have an excellent example [here](https://docs.rstudio.com/how-to-guides/users/basic/publish-rmd/) of how to create an Rmarkdown document using the built-in file creation tool and then publish it to Connect.
+
+An alternative method is shown below which is code based.
+
+## Prerequisites
+
+-   `rmarkdown` R package installed
+
+## Create Content {.numbered}
+
+### 1. Create .Rmd file
+
+Create a new file in a text editor named, `rmarkdown_example.Rmd` that contains the following code.
+````markdown
+---
+title: "RMarkdown Example"
+output: html_document
+---
+### This is an R Markdown document.
+
+#### Pressure Data summary
+
+`r ''````{r echo=FALSE}
+summary(pressure)
+```
+
+`r ''````{r echo=FALSE}
+plot(pressure)
+title("Pressure Plot")
+```
+
+````
+
+Open the file in RStudio
+
+![](images/1_5_rstudio_rmd.png){fig-align="left" width="80%"}
+
+### 2. Verify the file renders locally
+
+Press the __Knit__ button in the IDE. The rendered content should display in the Viewer pane.
+
+![](images/1_rmd_knit.png){fig-align="left" width="100%"}
+
+## Publish Content {.numbered}
+
+### 1. Verify Connect server is registered
+
+Press on the dropdown next to the "Publish" button and choose "Manage Accounts".  
+
+![](../shiny/images/5_register_connect_server.png){fig-align="left" width=100%}
+
+This will bring up a window that shows what Connect servers you are registered to publishing to.
+
+![](../shiny/images/6_connect_server_ip.png){fig-align="left" width=50%}
+
+If the "Publishing Accounts" area is blank, follow the instructions in [Connecting Your Account](https://docs.rstudio.com/connect/user/connecting/) to register your Connect server to your IDE.
+
+### 2. Publish
+
+Once you have verified that you have a Connect server available to publish to, press the blue "Publish" icon in the IDE and then the "Publish"  button to publish to the selected server.
+
+![](images/2_.png){fig-align="left" width=50%}
+
+### 3. Verify content deployment
+
+Look in the "Deploy" pane of the IDE.  You should see "Completed deployed execution" at the bottom.
+
+````markdown
+[Connect] Completed deployed execution
+Document successfully deployed to https://colorado.rstudio.com/rsc/content/ac07b562-6ef5-486d-98f9-adbd5551c215/
+Deployment completed: https://colorado.rstudio.com/rsc/connect/#/apps/ac07b562-6ef5-486d-98f9-adbd5551c215
+````
+
+### 4. Verify that content runs on Connect
+
+A browser window should open automatically to the address listed in the deployment message when you publish, or you can copy and paste the URL into a browser to check whether the content is successfully running in Connect.
+
+![](images/3_.png){fig-align="left" width=100%}

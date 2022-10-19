@@ -1,0 +1,8 @@
+[This is a stub, intended for discussion.  Bookdown publishing is actually quite flaky from the IDE using push-button publishing.  I think an argument could be made that the method captured below is actually easier to implement, but it does require that a static/maintained github repo exist to be pointed to.  *IF* we decide that this method makes more sense, I can flesh out this example with screenshots.]
+
+1. Create the site and make sure that it builds locally
+2. Run `rsconnect::writeManifest(contentCategory = "site")` to create a manifest.json that has the right content_category type, ("content_category": "site",)
+3. Commit and push the site to Github
+4. Login to Connect --> Publish --> Import from Git (use HTTPS git repo URL)
+
+The Bookdown site should now be visble in Connect and will be checked for updates on Github every 15 min.  Everytime a change is pulled in from Github, the site will rebuild.
