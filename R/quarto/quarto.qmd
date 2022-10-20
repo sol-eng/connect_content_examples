@@ -21,6 +21,8 @@ toc: false
 format:
   html:
     code-fold: true
+  pdf:
+    documentclass: scrreprt
 ---
 ### This is some markdown:
 
