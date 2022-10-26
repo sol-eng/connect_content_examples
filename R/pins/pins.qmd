@@ -7,18 +7,22 @@ The easiest way to publish a Pins board is to use the RStudio IDE to create an R
 ## Prerequisites
 
 -   `pins` R package installed
+-   `rsconnect` R package installed
 
 ## Verify Connect server is registered
 
-Select the dropdown next to the **Publish Application** button and choose **Manage Accounts**.
+Connect servers which have been registered can be viewed by using the following command in an R console.
+```markdown
+rsconnect::servers(local = TRUE)
+```
+This will return a list of available servers.
+```markdown
+     name                   url                                   certificate
+[1,] "colorado.rstudio.com" "https://colorado.rstudio.com/rsc/__api__" "" 
+```
+The __name__ value will be referenced later as <NAME> for publishing.
 
-![](../shiny/images/5_register_connect_server.png){fig-align="left" width="100%"}
-
-This will bring up a window that shows what Connect servers you are registered to publish to.
-
-![](../shiny/images/6_connect_server_ip.png){fig-align="left" width="50%"}
-
-If the **Publishing Accounts** area is blank, follow the instructions in [Connecting Your Account](https://docs.rstudio.com/connect/user/connecting/) to register your Connect server to your IDE.
+If no Servers are listed, follow the instructions in [Connecting Your Account](https://docs.rstudio.com/connect/user/connecting/) to register your Connect server to your IDE.
 
 ## Create Content {.numbered}
 
@@ -28,9 +32,9 @@ If the **Publishing Accounts** area is blank, follow the instructions in [Connec
 
 ### 2. Drop the following code into the file
 
-```markdown
+```{.R filename="faithful_pin.R"}
 # Establish connection to Connect server
-board <- pins::board_rsconnect()
+board <- pins::board_rsconnect(server = "<NAME>")
 
 # Create small data set
 my_data <- faithful #for example
@@ -40,6 +44,8 @@ pins::pin_write(board,
                 my_data,
                 name = "faithful_data")
 ```
+
+Replace the <NAME> value with the server __name__ returned in the Verification step above.
 
 ## Publish Content {.numbered}
 
