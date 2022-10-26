@@ -35,8 +35,6 @@ format:
   html:
     theme: cosmo
     number-sections: false
-  pdf:
-    documentclass: scrreprt
 
 
 
