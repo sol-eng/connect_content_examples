@@ -10,9 +10,7 @@ The RStudio Docs have an excellent example [here](https://docs.rstudio.com/how-t
 
 ### 1. Create  `plumber.R` file in empty directory
 
-```markdown
-# plumber.R
-
+```{.R filename="plumber.R"}
 library(plumber)
 library(dplyr)
 

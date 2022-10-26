@@ -1,10 +1,7 @@
-# get_cars_plumber.R
-
 library(plumber)
-library(dplyr)
 
 # Basic car data
-df <- mtcars %>% select(cyl, mpg)
+df <- mtcars[c('cyl', 'mpg')]
 df$model <- row.names(df)
 row.names(df) <- NULL
 
