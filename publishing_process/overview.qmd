@@ -1,0 +1,25 @@
+# Overview {.unnumbered}
+
+The process for publishing content to Connect can be broken down into 3 parts:
+
+1. Registering the Connect server
+2. Creating the content to be deployed
+3. Publishing, aka "deploying" the content to the Connect server
+
+This chapter will focus on Parts 1 and 3 of the process, Registering and Publishing, as the procedures used for these are not specific to a single content type.   As such, it is useful to look at these in a consolidated and separate context from Content Creation, which can vary based on the content type being worked on.  Registering and Publishing can be summarized as follows:
+
+* Server registration is the process by which a user enables an environment they are working in to communicate and send content a Connect server.
+* Publishing is the act of bundling up data that contains both content and metadata about it and sending it to a Connect server.
+
+# Chapter Organization {.unnumbered}
+
+The material in this chapter has been consolidated by the user environment used to perform the work.  Registration and Publishing can be done in several different ways:
+
+* From the RStudio IDE GUI
+* From an R console (or script) using the `rsconnect` R package
+* From a Unix terminal using the `rsconnect-python` package
+
+While it is not necessary to use the same environment for both functions, but it is useful to show how to do both in the same view.  
+
+
+

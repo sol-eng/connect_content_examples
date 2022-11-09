@@ -1,0 +1,3 @@
+# Publishing From Python {.unnumbered}
+
+Where we will describe how the Python `rsconnect-python` package can be used to register, and publish to, a Connect server.

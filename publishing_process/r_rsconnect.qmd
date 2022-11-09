@@ -1,0 +1,3 @@
+# Publishing From R {.unnumbered}
+
+Where we will discuss how the `rsconnect` R package can be used to register, and publish to, a Connect server.

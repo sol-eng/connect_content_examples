@@ -11,6 +11,12 @@ book:
       chapters:
         - intro/evolution-and_formats.qmd
         - intro/how-to-use-this-guide.qmd
+    - part: Publishing Process
+      chapters:
+        - publishing_process/overview.qmd
+        - publishing_process/push_button.qmd
+        - publishing_process/r_rsconnect.qmd
+        - publishing_process/python_rsconnect.qmd
     - part: R
       chapters: 
         - R/shiny/shiny.qmd

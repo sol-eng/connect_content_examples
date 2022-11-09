@@ -1,0 +1,3 @@
+# Push-Button Publishing {.unnumbered}
+
+Where we will discuss how to register, and publish to, a Connect server from within the RStudio IDE (and possibly Jupyter Notebooks).
